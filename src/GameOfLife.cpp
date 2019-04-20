@@ -1,7 +1,8 @@
-#include "Graphics/Window.h"
+#include "Window.h"
 
 int main(int argc, char const *argv[])
 {
-    bool ok = Window::CreateWindow();
-    return ok;
+	auto window = std::make_unique<Window>();
+	window->CreateWindow();
+    return 0;
 }

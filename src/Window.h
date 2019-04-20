@@ -3,6 +3,7 @@
 // Include standard headers
 #include <stdio.h>
 #include <stdlib.h>
+#include <memory>
 
 // Include GLEW. Always include it before gl.h and glfw3.h, since it's a bit magic.
 #include <GL/glew.h>
@@ -19,5 +20,10 @@ public:
 	Window();
 	~Window();
 
-	static int CreateWindow();
+	int CreateWindow();
+	int CreateTriangle();
+
+
+private:
+	GLFWwindow* m_window;
 };
