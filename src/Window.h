@@ -20,8 +20,11 @@ public:
 	Window();
 	~Window();
 
-	int CreateWindow();
-	int CreateTriangle();
+	void CreateWindow();
+	void Repaint();
+	bool ShouldCloseWindow();
+	void CloseWindow();
+	void DrawGrid();
 
 
 private:
