@@ -5,6 +5,7 @@ var h = canvas.height;
 var gridSize = 15;
 
 function drawGrid() {
+  ctx.strokeStyle = "#dedede"
     for (x = -0.5; x <= w; x += gridSize) {
       ctx.moveTo(x, 0);
       ctx.lineTo(x, h);
