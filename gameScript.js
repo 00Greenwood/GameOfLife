@@ -2,22 +2,23 @@ var canvas = document.getElementById("gameCanvas");
 var ctx = canvas.getContext("2d");
 var w = canvas.width;
 var h = canvas.height;
+var gridSize = 15;
 
-function drawBackground() {
-    for (x = 0; x <= w; x += 15) {
-        ctx.moveTo(x, 0);
-        ctx.lineTo(x, h);
+function drawGrid() {
+    for (x = -0.5; x <= w; x += gridSize) {
+      ctx.moveTo(x, 0);
+      ctx.lineTo(x, h);
     }
-    for (y = 0; y <= h; y += 15) {
-        ctx.moveTo(0, y);
-        ctx.lineTo(w, y);
+    for (y = -0.5; y <= h; y += gridSize) {
+      ctx.moveTo(0, y);
+      ctx.lineTo(w, y);
     }
     ctx.stroke();
 }
 
 function draw() {
-    ctx.clearRect(0, 0, w, h);
-    drawBackground();
+  ctx.clearRect(0, 0, w, h);
+  drawGrid();
 }
 
 setInterval(draw, 10);
