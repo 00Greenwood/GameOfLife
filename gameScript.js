@@ -4,7 +4,6 @@ var w = canvas.width;
 var h = canvas.height;
 
 function drawBackground() {
-    ctx.lineWidth = 0.1;
     for (x = 0; x <= w; x += 15) {
         ctx.moveTo(x, 0);
         ctx.lineTo(x, h);
