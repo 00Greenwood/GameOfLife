@@ -1,7 +1,7 @@
 var canvas = document.getElementById("gameCanvas");
 var ctx = canvas.getContext("2d");
-var w = canvas.width;
-var h = canvas.height;
+var w = canvas.width + 1;
+var h = canvas.height + 1;
 var gridSize = 10;
 var cells = [];
 var simulating = false;
@@ -69,12 +69,12 @@ function drawGrid() {
 function drawCells() {
   ctx.fillStyle = "#000000";
   for (let i = 0; i < cells.length; i++) {
-    ctx.fillRect(cells[i].x, cells[i].y, gridSize, gridSize);
+    ctx.fillRect(cells[i].x - 0.5, cells[i].y - 0.5, gridSize, gridSize);
   }
 }
 
 function draw() {
-  ctx.clearRect(0, 0, w, h);
+  ctx.clearRect(-0.5, -0.5, w, h);
   drawGrid();
   drawCells();
 }
