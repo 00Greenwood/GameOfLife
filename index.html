@@ -1,24 +1,28 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <title>Game Of Life</title>
-    <style>
-      * {
-        padding: 0;
-        margin: 0;
-      }
 
-      canvas {
-        background: #f0f0f0;
-        display: block;
-        margin: 0 auto;
-      }
-    </style>
-  </head>
+<head>
+  <meta charset="utf-8" />
+  <title>Game Of Life</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
 
-  <body>
-    <canvas id="gameCanvas" width="499" height="499"></canvas>
-    <script src="gameScript.js"></script>
-  </body>
+    canvas {
+      background: #f0f0f0;
+      display: block;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="gameCanvas" width="499" height="499"></canvas>
+  <script src="gameScript.js"></script>
+  <input onclick="simulateClicked()" type="button" value="Simulate" id="simulateButton"></input>
+  <input onclick="resetClicked()" type="button" value="Reset" id="resetButton"></input>
+</body>
+
 </html>

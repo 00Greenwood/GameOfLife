@@ -4,19 +4,47 @@ var w = canvas.width;
 var h = canvas.height;
 var gridSize = 10;
 var cells = [];
+var simulating = false;
 
 class Cell {
   constructor(x, y) {
-    this.x = x - x%gridSize;
-    this.y = y - y%gridSize;
+    this.x = x - x % gridSize;
+    this.y = y - y % gridSize;
   }
 }
 
-document.addEventListener("click", mouseClicked);
+function simulateClicked() {
+  let elem = document.getElementById("simulateButton");
+  simulating = !simulating;
+  elem.value = simulating ? "Pause" : "Simulate";
+}
 
-function mouseClicked(event) {
-  cells.push(new Cell(event.offsetX, event.offsetY));
+function resetClicked() {
+  let elem = document.getElementById("simulateButton");
+  elem.value = "Simulate";
+  simulating = false;
+  cells = [];
   draw();
+}
+
+function canvasClicked(event) {
+  if (!simulating) {
+    addCell(event.offsetX, event.offsetY);
+    draw();
+  }
+}
+
+function addCell(x, y) {
+  let cell = new Cell(x, y);
+  let includes = false;
+  for (let i = 0; i < cells.length; i++) {
+    if (cells[i].x == cell.x && cells[i].y == cell.y) {
+      includes = true;
+    }
+  }
+  if (!includes) {
+    cells.push(cell);
+  }
 }
 
 function drawGrid() {
@@ -45,5 +73,6 @@ function draw() {
   drawCells();
 }
 
+canvas.addEventListener("click", canvasClicked);
 // Initial draw
 draw();
