@@ -29,28 +29,49 @@ function resetClicked() {
 
 function canvasClicked(event) {
   if (!simulating) {
-    addCell(event.offsetX, event.offsetY);
+    updateCell(event.offsetX, event.offsetY);
     draw();
   }
 }
 
-function addCell(x, y) {
+function updateCell(x, y) {
   let cell = new Cell(x, y);
-  let includes = false;
   for (let i = 0; i < cells.length; i++) {
     if (cells[i].x == cell.x && cells[i].y == cell.y) {
-      includes = true;
+      cells.splice(i, 1)
+      return;
     }
   }
-  if (!includes) {
-    cells.push(cell);
-  }
+  cells.push(cell);
 }
 
 function updateCells() {
   if (simulating) {
+    let nextGeneration = [...cells];
+    for (let i = cells.length - 1; i >= 0; i--) {
+      let n = getNumberOfAdjacentCells(cells[i]);
+      if (n < 2 || n > 3) {
+        nextGeneration.splice(i, 1);
+      }
+    }
+    cells = [...nextGeneration];
     draw();
   }
+}
+
+function getNumberOfAdjacentCells(cell) {
+  let n = -1;
+  for (let i = 0; i < cells.length; i++) {
+    if (
+      cells[i].x >= cell.x - gridSize &&
+      cells[i].x <= cell.x + gridSize &&
+      cells[i].y >= cell.y - gridSize &&
+      cells[i].y <= cell.y + gridSize
+    ) {
+      n += 1;
+    }
+  }
+  return n;
 }
 
 function drawGrid() {
@@ -74,7 +95,7 @@ function drawCells() {
 }
 
 function draw() {
-  ctx.clearRect(-0.5, -0.5, w, h);
+  ctx.clearRect(0, 0, w, h);
   drawGrid();
   drawCells();
 }
@@ -82,4 +103,4 @@ function draw() {
 canvas.addEventListener("click", canvasClicked);
 // Initial draw
 draw();
-setInterval(updateCells, 100);
+setInterval(updateCells, 250);
