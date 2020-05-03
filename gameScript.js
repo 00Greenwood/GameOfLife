@@ -47,6 +47,12 @@ function addCell(x, y) {
   }
 }
 
+function updateCells() {
+  if (simulating) {
+    draw();
+  }
+}
+
 function drawGrid() {
   ctx.strokeStyle = "#dedede"
   for (x = -0.5; x <= w; x += gridSize) {
@@ -76,3 +82,4 @@ function draw() {
 canvas.addEventListener("click", canvasClicked);
 // Initial draw
 draw();
+setInterval(updateCells, 100);
